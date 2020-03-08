@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="report.xsl" type="text/xsl"?>
+<selmate-report name="Assert" exec-time="2020-03-05 21:08:13">
+  <command-report>
+    <step>1</step>
+    <command-name>OPEN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>2</step>
+    <command-name>ASSIGN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>3</step>
+    <command-name>CLICK</command-name>
+    <step-description>Click on the key 1</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>4</step>
+    <command-name>CLICK</command-name>
+    <step-description>Click on the key 0</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>5</step>
+    <command-name>CLICK</command-name>
+    <step-description>Click on multiply</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>6</step>
+    <command-name>CLICK</command-name>
+    <step-description>Click on the key 3</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>7</step>
+    <command-name>CLICK</command-name>
+    <step-description>Click on the key =</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>8</step>
+    <command-name>READVALUE</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>9</step>
+    <command-name>ASSERT{NOT_EQUAL}</command-name>
+    <step-description />
+    <status>FAILED</status>
+    <description>Expected value 30 is equal to  30</description>
+  </command-report>
+</selmate-report>

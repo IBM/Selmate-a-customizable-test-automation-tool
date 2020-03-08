@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="report.xsl" type="text/xsl"?>
+<selmate-report name="WINDOW" exec-time="2020-03-06 21:38:18">
+  <command-report>
+    <step>1</step>
+    <command-name>OPEN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>2</step>
+    <command-name>CLICK</command-name>
+    <step-description>Test Message</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>3</step>
+    <command-name>DELAY</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>4</step>
+    <command-name>SWITCH_WINDOW</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>5</step>
+    <command-name>CLOSE</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>6</step>
+    <command-name>CLOSE</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>7</step>
+    <command-name>SWITCH_PARENT_WINDOW</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>8</step>
+    <command-name>OPEN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>9</step>
+    <command-name>CLICK</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>10</step>
+    <command-name>DELAY</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>11</step>
+    <command-name>SWITCH_WINDOW</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>12</step>
+    <command-name>CLOSE</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>13</step>
+    <command-name>SWITCH_PARENT_WINDOW</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>14</step>
+    <command-name>CLOSE</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+</selmate-report>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="report.xsl" type="text/xsl"?>
+<selmate-report name="CHECKBOX" exec-time="2020-03-05 21:38:56">
+  <command-report>
+    <step>1</step>
+    <command-name>OPEN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>2</step>
+    <command-name>DELAY</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>3</step>
+    <command-name>ACTIVATE</command-name>
+    <step-description>Navigate to Percentage Calculator</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>4</step>
+    <command-name>DELAY</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>5</step>
+    <command-name>DESELECT</command-name>
+    <step-description>Uncheck "Include Option Below"</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>6</step>
+    <command-name>WRITE</command-name>
+    <step-description>Set Home Price</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>7</step>
+    <command-name>SCREENSHOT</command-name>
+    <step-description />
+    <status>PASSED</status>
+    <image-src>Img7.png</image-src>
+  </command-report>
+  <command-report>
+    <step>8</step>
+    <command-name>CLICK</command-name>
+    <step-description>Click Calculate button.</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>9</step>
+    <command-name>SCREENSHOT</command-name>
+    <step-description />
+    <status>PASSED</status>
+    <image-src>Img9.png</image-src>
+  </command-report>
+</selmate-report>

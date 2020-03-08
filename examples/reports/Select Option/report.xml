@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="report.xsl" type="text/xsl"?>
+<selmate-report name="Select Option" exec-time="2020-03-06 21:35:25">
+  <command-report>
+    <step>1</step>
+    <command-name>OPEN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>2</step>
+    <command-name>SELECT_OPTION</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>3</step>
+    <command-name>SCREENSHOT</command-name>
+    <step-description />
+    <status>PASSED</status>
+    <image-src>Img3.png</image-src>
+  </command-report>
+  <command-report>
+    <step>4</step>
+    <command-name>DESELECT_OPTION</command-name>
+    <step-description />
+    <status>FAILED</status>
+    <description>Unknown error occured</description>
+    <image-src>Img4.png</image-src>
+  </command-report>
+</selmate-report>

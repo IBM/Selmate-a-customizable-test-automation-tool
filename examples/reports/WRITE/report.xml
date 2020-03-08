@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="report.xsl" type="text/xsl"?>
+<selmate-report name="WRITE" exec-time="2020-03-06 21:39:06">
+  <command-report>
+    <step>1</step>
+    <command-name>OPEN</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>2</step>
+    <command-name>DELAY</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>3</step>
+    <command-name>ACTIVATE</command-name>
+    <step-description>Navigate to Percentage Calculator</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>4</step>
+    <command-name>DELAY</command-name>
+    <step-description />
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>5</step>
+    <command-name>WRITE</command-name>
+    <step-description>Base Number</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>6</step>
+    <command-name>WRITE</command-name>
+    <step-description>Percentage Amount</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>7</step>
+    <command-name>CLICK</command-name>
+    <step-description>Calculate Percentage Value</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>8</step>
+    <command-name>READVALUE</command-name>
+    <step-description>Read Percentage Value</step-description>
+    <status>PASSED</status>
+  </command-report>
+  <command-report>
+    <step>9</step>
+    <command-name>PRINT</command-name>
+    <step-description>Print the value</step-description>
+    <status>PASSED</status>
+    <description>-  25</description>
+  </command-report>
+  <command-report>
+    <step>10</step>
+    <command-name>ASSERT{EQUAL}</command-name>
+    <step-description>Check equality of the calculated value with the expected value</step-description>
+    <status>PASSED</status>
+    <description />
+  </command-report>
+  <command-report>
+    <step>11</step>
+    <command-name>SCREENSHOT</command-name>
+    <step-description />
+    <status>PASSED</status>
+    <image-src>Img11.png</image-src>
+  </command-report>
+</selmate-report>
