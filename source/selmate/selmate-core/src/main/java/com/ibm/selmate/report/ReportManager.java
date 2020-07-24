@@ -56,7 +56,7 @@ public class ReportManager {
 					this.getClass()
 							.getClassLoader()
 							.getResourceAsStream(
-									"com/ibm/selmate/style/selmate-report.xsl"),
+									"selmate-report.xsl"),
 					new FileOutputStream(this.reportDirectoryPath
 							+ File.separator + "report.xsl"));
 			cloneFile(
