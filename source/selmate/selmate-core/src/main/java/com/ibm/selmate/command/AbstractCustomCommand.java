@@ -13,7 +13,7 @@ public abstract class AbstractCustomCommand extends AbstractCommand {
 		this.arguments.add(argument);
 	}
 
-	public void getArgument(int index) {
+	public String getArgument(int index) {
 		this.arguments.get(index);
 	}
 
