@@ -14,7 +14,7 @@ public abstract class AbstractCustomCommand extends AbstractCommand {
 	}
 
 	public String getArgument(int index) {
-		this.arguments.get(index);
+		return this.arguments.get(index);
 	}
 
 	public int getArgumentCount() {
