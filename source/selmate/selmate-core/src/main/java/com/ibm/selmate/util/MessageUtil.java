@@ -12,7 +12,7 @@ public class MessageUtil {
 	private static MessageUtil instance = new MessageUtil();
 
 	private MessageUtil() {
-		ResourceBundle resourceBundle = ResourceBundle.getBundle("application.properties");
+		ResourceBundle resourceBundle = ResourceBundle.getBundle("application");
 		String key = null;
 		Enumeration<String> keys = resourceBundle.getKeys();
 		while (keys.hasMoreElements()) {
