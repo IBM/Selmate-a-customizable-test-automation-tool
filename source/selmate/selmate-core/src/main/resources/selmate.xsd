@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="http://www.ibm.com/selmate" xmlns:tns="http://www.ibm.com/selmate"
-	elementFormDefault="qualified">
+	targetNamespace="http://www.ibm.com/selmate"
+	xmlns:tns="http://www.ibm.com/selmate" elementFormDefault="qualified">
 
 	<xs:element name="script">
 		<xs:complexType>
@@ -13,44 +13,50 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xs:simpleType name="ElementIdType">
+	<xs:simpleType name="AbstractElementSelectorType">
 		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ElementIdType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
 	<xs:simpleType name="ElementNameType">
-		<xs:restriction base="xs:string" />
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
 	<xs:simpleType name="ElementClassNameType">
-		<xs:restriction base="xs:string" />
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
 	<xs:simpleType name="ElementTagNameType">
-		<xs:restriction base="xs:string" />
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
 	<xs:simpleType name="ElementCSSSelectorType">
-		<xs:restriction base="xs:string" />
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
 	<xs:simpleType name="LinkElementTextType">
-		<xs:restriction base="xs:string" />
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
 	<xs:simpleType name="LinkElementPartialTextType">
-		<xs:restriction base="xs:string" />
+		<xs:restriction base="tns:AbstractElementSelectorType" />
 	</xs:simpleType>
 
-
 	<xs:complexType name="ElementLocatorType">
-		<xs:choice>
+		<xs:choice minOccurs="1" maxOccurs="unbounded">
 			<xs:element name="id" type="tns:ElementIdType" />
 			<xs:element name="xpath" type="tns:ElementNameType" />
-			<xs:element name="className" type="tns:ElementClassNameType" />
+			<xs:element name="className"
+				type="tns:ElementClassNameType" />
 			<xs:element name="tagName" type="tns:ElementTagNameType" />
-			<xs:element name="cssSelector" type="tns:ElementCSSSelectorType" />
+			<xs:element name="cssSelector"
+				type="tns:ElementCSSSelectorType" />
 			<xs:element name="linkText" type="tns:LinkElementTextType" />
-			<xs:element name="partialLinkText" type="tns:LinkElementPartialTextType" />
+			<xs:element name="partialLinkText"
+				type="tns:LinkElementPartialTextType" />
 		</xs:choice>
 	</xs:complexType>
 
@@ -60,7 +66,8 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="AbstractCommandType" abstract="true">
+	<xs:complexType name="AbstractCommandType"
+		abstract="true">
 		<xs:annotation>
 			<xs:documentation>
 				This Complex Type represents an abstraction of all
@@ -181,8 +188,8 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:complexType name="AbstractElementInteractionCommandType"
-		abstract="true">
+	<xs:complexType
+		name="AbstractElementInteractionCommandType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>
 				This Complex Type represents an abstraction of all
@@ -200,7 +207,8 @@
 
 	<xs:complexType name="WriteTextCommandType">
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType">
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
 				<xs:sequence>
 					<xs:element name="value" type="xs:string" />
 				</xs:sequence>
@@ -210,7 +218,8 @@
 
 	<xs:complexType name="WritePasswordCommandType">
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType">
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
 				<xs:sequence>
 					<xs:element name="value" type="xs:string" />
 				</xs:sequence>
@@ -238,9 +247,10 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType">
-				<xs:attribute name="status" type="tns:SelectionStatusType"
-					use="required" />
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
+				<xs:attribute name="status"
+					type="tns:SelectionStatusType" use="required" />
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -284,9 +294,10 @@
 									</xs:element>
 									<xs:element name="option" maxOccurs="unbounded">
 										<xs:complexType>
-											<xs:attribute name="value" type="xs:string" use="required" />
-											<xs:attribute name="by" type="tns:OptionSelectionType"
+											<xs:attribute name="value" type="xs:string"
 												use="required" />
+											<xs:attribute name="by"
+												type="tns:OptionSelectionType" use="required" />
 										</xs:complexType>
 									</xs:element>
 								</xs:choice>
@@ -308,19 +319,22 @@
 
 	<xs:complexType name="ClickCommandType">
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType" />
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType" />
 		</xs:complexContent>
 	</xs:complexType>
 
 	<xs:complexType name="DragCommandType">
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType" />
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType" />
 		</xs:complexContent>
 	</xs:complexType>
 
 	<xs:complexType name="DropCommandType">
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType" />
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType" />
 		</xs:complexContent>
 	</xs:complexType>
 
@@ -334,14 +348,17 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType">
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="AbstractReadCommandType" abstract="true">
+	<xs:complexType name="AbstractReadCommandType"
+		abstract="true">
 		<xs:complexContent>
-			<xs:extension base="tns:AbstractElementInteractionCommandType">
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
 				<xs:sequence>
 					<xs:element name="variable" type="xs:string" />
 				</xs:sequence>
@@ -446,7 +463,8 @@
 				</xs:sequence>
 				<xs:attribute name="type" type="tns:AssertType">
 				</xs:attribute>
-				<xs:attribute name="comparisonType" type="tns:ComparisonType">
+				<xs:attribute name="comparisonType"
+					type="tns:ComparisonType">
 				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
@@ -474,7 +492,8 @@
 					<xs:element name="arguments">
 						<xs:complexType>
 							<xs:sequence>
-								<xs:element name="argument" minOccurs="0" maxOccurs="unbounded" />
+								<xs:element name="argument" minOccurs="0"
+									maxOccurs="unbounded" />
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>

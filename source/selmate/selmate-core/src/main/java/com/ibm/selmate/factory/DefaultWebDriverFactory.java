@@ -42,7 +42,13 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 		DesiredCapabilities capabilities = null;
 		if (DriverDetector.isChromeDriver()) {
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("start-maximized");
+			String optionsStr = System.getProperty("chrome-options");
+			if (optionsStr != null) {
+				String[] optionsList = optionsStr.split(";");
+				for (String option : optionsList) {
+					options.addArguments(option);
+				}
+			}
 			driver = new ChromeDriver(options);
 		} else if (DriverDetector.isFirefoxDriver() || DriverDetector.isFirefoxGekoDriver()) {
 			driver = new FirefoxDriver();

@@ -1,4 +1,3 @@
-
 package com.ibm.selmate;
 
 import java.io.InputStream;
@@ -49,7 +48,6 @@ final class SelmateScriptExecutorImpl implements SelmateScriptExecutor {
 			logger.fatal(script);
 			throw new SelmateExecutionException(e);
 		}
-
 	}
 
 	@Override
