@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.ibm.com/selmate"
+	xmlns:tns="http://www.ibm.com/selmate" elementFormDefault="qualified">
+
+	<xs:element name="script">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="command" type="tns:AbstractCommandType"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" />
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="AbstractElementSelectorType">
+		<xs:restriction base="xs:string" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ElementIdType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ElementNameType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ElementClassNameType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ElementTagNameType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:simpleType name="ElementCSSSelectorType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:simpleType name="LinkElementTextType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:simpleType name="LinkElementPartialTextType">
+		<xs:restriction base="tns:AbstractElementSelectorType" />
+	</xs:simpleType>
+
+	<xs:complexType name="ElementLocatorType">
+		<xs:choice minOccurs="1" maxOccurs="unbounded">
+			<xs:element name="id" type="tns:ElementIdType" />
+			<xs:element name="xpath" type="tns:ElementNameType" />
+			<xs:element name="className"
+				type="tns:ElementClassNameType" />
+			<xs:element name="tagName" type="tns:ElementTagNameType" />
+			<xs:element name="cssSelector"
+				type="tns:ElementCSSSelectorType" />
+			<xs:element name="linkText" type="tns:LinkElementTextType" />
+			<xs:element name="partialLinkText"
+				type="tns:LinkElementPartialTextType" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="ElementType">
+		<xs:sequence>
+			<xs:element name="locator" type="tns:ElementLocatorType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AbstractCommandType"
+		abstract="true">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents an abstraction of all
+				Commands to be used for communication with the
+				browser.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="stepDescription" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OpenURLCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:attribute name="url" type="xs:string" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="closeCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="RefreshCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SwitchToWindowCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SwitchToParentWindowCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SwitchToFrameCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:choice>
+					<xs:element name="id" type="xs:string" />
+					<xs:element name="index" type="xs:int" />
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SwitchToDefaultContentCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ScreenshotCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AbstractAlertCommandType"
+		abstract="true">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AcceptAlertCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractAlertCommandType">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DismissAlertCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractAlertCommandType">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AuthenticateAlertCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractAlertCommandType">
+				<xs:sequence>
+					<xs:element name="user" type="xs:string" />
+					<xs:element name="pwd" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="NavigationHistoryCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:attribute name="type" type="tns:NavigationType">
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="NavigationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FORWARD" />
+			<xs:enumeration value="BACKWARD" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType
+		name="AbstractElementInteractionCommandType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents an abstraction of all
+				Input Commands to be used for communication with the browser.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence>
+					<xs:element name="element" type="tns:ElementType" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="WriteTextCommandType">
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="WritePasswordCommandType">
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="PrintCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AbstractSelectCommandType"
+		abstract="true">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents an abstraction of all
+				Select Commands(e.g. Selection of radio button, checkbox, listbox,
+				dropdown etc.) to be used for communication with the browser.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
+				<xs:attribute name="status"
+					type="tns:SelectionStatusType" use="required" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="SelectionStatusType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SELECT" />
+			<xs:enumeration value="DESELECT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="SelectCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractSelectCommandType">
+				<xs:sequence />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SelectOptionsCommandType">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents
+				Select Command(e.g.
+				Selection of options in listbox,
+				dropdown etc.) to be used for
+				communication with the browser.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractSelectCommandType">
+				<xs:sequence>
+					<xs:element name="options">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="all">
+										<xs:complexType>
+											<xs:sequence />
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="option" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:attribute name="value" type="xs:string"
+												use="required" />
+											<xs:attribute name="by"
+												type="tns:OptionSelectionType" use="required" />
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="OptionSelectionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="INDEX" />
+			<xs:enumeration value="VALUE" />
+			<xs:enumeration value="VISIBLE_TEXT" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ClickCommandType">
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DragCommandType">
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DropCommandType">
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ActivateCommandType">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents a command to initiate
+				an Action (e.g. by clicking on a Hyperlink or a Button)
+				in the
+				browser to communicate to the server.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AbstractReadCommandType"
+		abstract="true">
+		<xs:complexContent>
+			<xs:extension
+				base="tns:AbstractElementInteractionCommandType">
+				<xs:sequence>
+					<xs:element name="variable" type="xs:string" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ReadValueCommandType">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents a command to fetch
+				attribute value of an HTML element from the browser.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractReadCommandType">
+				<xs:attribute name="attributeName" type="xs:string"
+					use="optional">
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ReadStateCommandType">
+		<xs:annotation>
+			<xs:documentation>
+				This Complex Type represents a command to read
+				status of an Html Element.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractReadCommandType">
+				<xs:attribute name="state">
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="ElementStateType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ENABLED" />
+			<xs:enumeration value="SELECTED" />
+			<xs:enumeration value="DISPLAYED" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="WaitCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence>
+					<xs:element name="duration">
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="xs:long">
+									<xs:attribute name="unit" type="tns:TimeUnitType">
+									</xs:attribute>
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="type" type="tns:DelayType">
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="TimeUnitType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="s" />
+			<xs:enumeration value="m" />
+			<xs:enumeration value="h" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DelayType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IMPLICIT" />
+			<xs:enumeration value="INTERMEDIATE" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="AssignCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence>
+					<xs:element name="value" type="xs:string" />
+				</xs:sequence>
+				<xs:attribute name="variable" type="xs:string" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AssertCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence>
+					<xs:element name="actualValue" type="xs:string" />
+					<xs:element name="expectedValue" type="xs:string" />
+					<xs:element name="failureMsg" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+				<xs:attribute name="type" type="tns:AssertType">
+				</xs:attribute>
+				<xs:attribute name="comparisonType"
+					type="tns:ComparisonType">
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="AssertType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ERROR" />
+			<xs:enumeration value="WARN" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ComparisonType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EQUAL" />
+			<xs:enumeration value="NOT_EQUAL" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="CustomCommandType">
+		<xs:complexContent>
+			<xs:extension base="tns:AbstractCommandType">
+				<xs:sequence>
+					<xs:element name="commandClass" type="xs:string" />
+					<xs:element name="arguments">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="argument" minOccurs="0"
+									maxOccurs="unbounded" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>
