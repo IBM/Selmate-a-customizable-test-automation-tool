@@ -1,6 +1,3 @@
-/*******************************************************************************
- * This code is the intellectual property of IBM GBS and is not to be used by non-GBS practitioners nor distributed outside of GBS engagements. For full usage guidelines refer to http://ibm.biz/innersourcing-submit-guidelines
- ******************************************************************************/
 package com.ibm.selmate.report;
 
 import java.io.File;
@@ -11,10 +8,10 @@ import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-import atu.testrecorder.ATUTestRecorder;
-
 import com.ibm.selmate.exception.SelmateException;
 import com.ibm.selmate.util.ReportUtil;
+
+import atu.testrecorder.ATUTestRecorder;
 
 public class VideoRecordingManager {
 
