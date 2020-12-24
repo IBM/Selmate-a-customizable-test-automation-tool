@@ -25,6 +25,15 @@ public class ExecCommandParserUtil {
 		throw new SelmateException("File Not Found");
 	}
 
+	public static boolean isBulkExecution(String[] args) {
+		for (int i = 0; i < args.length; i++) {
+			if (args[i].equals("--bulk")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static List<File> getScriptFiles(String[] args) throws SelmateException {
 		List<File> files = new ArrayList<>();
 		for (int i = 0; i < args.length; i++) {

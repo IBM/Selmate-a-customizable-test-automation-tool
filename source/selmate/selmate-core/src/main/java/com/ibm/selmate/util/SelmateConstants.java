@@ -46,4 +46,6 @@ public class SelmateConstants {
 
 	public static Pattern VARIABLE_NAME_REF_PATTERN = Pattern.compile(VARIABLE_NAME_REF_PATTERN_STR);
 
+	public static final String HEADLESS = "headless";
+
 }
