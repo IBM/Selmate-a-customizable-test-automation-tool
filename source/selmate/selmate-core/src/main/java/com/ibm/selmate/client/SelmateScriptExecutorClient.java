@@ -29,9 +29,10 @@ public class SelmateScriptExecutorClient {
 			}
 			File inputFile = ExecCommandParserUtil.getScriptFile(args);
 			String scriptName = inputFile.getName().substring(0, inputFile.getName().lastIndexOf("."));
-			SelmateScriptExecutor scriptExecutor = SelmateScriptExecutorFactory.getInstance().create(scriptName);
-			FileInputStream fileIS = new FileInputStream(inputFile);
-			scriptExecutor.execute(fileIS);
+			try (FileInputStream fileIS = new FileInputStream(inputFile);) {
+				SelmateScriptExecutor scriptExecutor = SelmateScriptExecutorFactory.getInstance().create(scriptName);
+				scriptExecutor.execute(fileIS);
+			}
 		} catch (Exception e) {
 			logger.fatal("Exception", e);
 		}

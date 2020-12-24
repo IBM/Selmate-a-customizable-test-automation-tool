@@ -18,7 +18,7 @@ import com.ibm.selmate.util.ExecCommandParserUtil;
 
 public class XLSScriptExecutor {
 
-	static final Logger logger = Logger.getLogger(XLSScriptExecutor.class.getName());
+	static final Logger logger = Logger.getLogger(XLSScriptExecutor.class);
 
 	public static void main(String[] args) {
 
@@ -31,10 +31,12 @@ public class XLSScriptExecutor {
 						"Usage: SelmateScriptExecutorClient --file {xls filePath} [--options {option1 option2 ...}]");
 			}
 
-			File inputFile = ExecCommandParserUtil.getScriptFile(args);
-			String scriptName = inputFile.getName().substring(0, inputFile.getName().lastIndexOf("."));
-			XLSScriptExecutor xlsScriptExecutor = new XLSScriptExecutor();
-			xlsScriptExecutor.execute(scriptName, new FileInputStream(inputFile));
+			List<File> inputFiles = ExecCommandParserUtil.getScriptFiles(args);
+			for (File inputFile : inputFiles) {
+				String scriptName = inputFile.getName().substring(0, inputFile.getName().lastIndexOf("."));
+				XLSScriptExecutor xlsScriptExecutor = new XLSScriptExecutor();
+				xlsScriptExecutor.execute(scriptName, new FileInputStream(inputFile));
+			}
 			logger.info("Execution finished.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,15 +46,15 @@ public class XLSScriptExecutor {
 
 	public void execute(String scriptName, InputStream inputStream) {
 		try {
-			logger.info("Start of execute method inside XLSScriptExecutor");
-			System.out.println("Executing XLS Script...");
+			logger.info("[" + scriptName + "]" + "Start of execute method inside XLSScriptExecutor");
+			System.out.println("[" + scriptName + "]" + "Executing XLS Script ...");
 			ScriptReader scriptReader = new ScriptReaderImpl();
 			List<ScriptCommand> scriptCommands = scriptReader.read(inputStream);
 			SelmateScriptGenerator selmateScriptGenerator = new SelmateScriptGeneratorImpl();
 			String selmateScript = selmateScriptGenerator.generate(scriptCommands);
 			SelmateScriptExecutor selmateScriptExecutor = SelmateScriptExecutorFactory.getInstance().create(scriptName);
 			selmateScriptExecutor.execute(selmateScript);
-			logger.info("End of execute method inside XLSScriptExecutor");
+			logger.info("[" + scriptName + "]" + "End of execute method inside XLSScriptExecutor");
 		} catch (SelmateXLSAdapterException e) {
 			e.printStackTrace();
 		} catch (SelmateExecutionException e) {

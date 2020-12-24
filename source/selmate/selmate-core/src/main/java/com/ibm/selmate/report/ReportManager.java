@@ -34,7 +34,7 @@ import com.ibm.selmate.util.ReportUtil;
  */
 public class ReportManager {
 
-	private static ReportManager instance = null;
+	private static final ThreadLocal<ReportManager> instance = new ThreadLocal<>();
 
 	private String reportDirectoryPath;
 
@@ -47,20 +47,11 @@ public class ReportManager {
 	 */
 	private ReportManager() throws SelmateExecutionException {
 		try {
-			// createReportDirectory();
-			this.reportDirectoryPath = ReportUtil.createReportDirectory();
-			cloneFile(
-					this.getClass()
-							.getClassLoader()
-							.getResourceAsStream(
-									"selmate-report.xsl"),
-					new FileOutputStream(this.reportDirectoryPath
-							+ File.separator + "report.xsl"));
-			cloneFile(
-					this.getClass().getClassLoader()
-							.getResourceAsStream("image/selmate-logo.png"),
-					new FileOutputStream(this.reportDirectoryPath
-							+ File.separator + "selmate-logo.png"));
+			this.reportDirectoryPath = ReportUtil.getInstance().getReportDirectory();
+			cloneFile(this.getClass().getClassLoader().getResourceAsStream("selmate-report.xsl"),
+					new FileOutputStream(this.reportDirectoryPath + File.separator + "report.xsl"));
+			cloneFile(this.getClass().getClassLoader().getResourceAsStream("image/selmate-logo.png"),
+					new FileOutputStream(this.reportDirectoryPath + File.separator + "selmate-logo.png"));
 		} catch (FileNotFoundException e) {
 			throw new SelmateExecutionException(e);
 		}
@@ -74,8 +65,7 @@ public class ReportManager {
 	 * @param os
 	 * @throws SelmateExecutionException
 	 */
-	private void cloneFile(InputStream is, OutputStream os)
-			throws SelmateExecutionException {
+	private void cloneFile(InputStream is, OutputStream os) throws SelmateExecutionException {
 		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
 		try {
@@ -108,23 +98,21 @@ public class ReportManager {
 	/**
 	 * This method initializes the report generation process.
 	 * 
-	 * @param {@link SelmateContext}
+	 * @param {@link
+	 * 			SelmateContext}
 	 * 
 	 */
 	public void init(SelmateContext selmateContext) {
 		document = new Document();
-		ProcessingInstruction processingInstruction = new ProcessingInstruction(
-				"xml-stylesheet");
+		ProcessingInstruction processingInstruction = new ProcessingInstruction("xml-stylesheet");
 		Map<String, String> data = new HashMap<String, String>();
 		data.put("type", "text/xsl");
 		data.put("href", "report.xsl");
 		processingInstruction.setData(data);
 		document.addContent(processingInstruction);
 		Element rootElement = new Element("selmate-report");
-		Attribute nameAttribute = new Attribute("name",
-				selmateContext.getScriptName());
-		Attribute executionTimeAttribute = new Attribute("exec-time",
-				DateFormatter.format(new Date()));
+		Attribute nameAttribute = new Attribute("name", selmateContext.getScriptName());
+		Attribute executionTimeAttribute = new Attribute("exec-time", DateFormatter.format(new Date()));
 		rootElement.setAttribute(nameAttribute);
 		rootElement.setAttribute(executionTimeAttribute);
 		document.setRootElement(rootElement);
@@ -139,11 +127,9 @@ public class ReportManager {
 	 * @param status
 	 * @throws SelmateExecutionException
 	 */
-	public void log(int stepNo, String commandName, String stepDescription,
-			String status) throws SelmateExecutionException {
-		document.getRootElement().addContent(
-				createCommandReportElement(stepNo, commandName,
-						stepDescription, status));
+	public void log(int stepNo, String commandName, String stepDescription, String status)
+			throws SelmateExecutionException {
+		document.getRootElement().addContent(createCommandReportElement(stepNo, commandName, stepDescription, status));
 	}
 
 	/**
@@ -156,12 +142,10 @@ public class ReportManager {
 	 * @param errorDescription
 	 * @throws SelmateExecutionException
 	 */
-	public void log(int stepNo, String commandName, String stepDescription,
-			String status, String errorDescription)
+	public void log(int stepNo, String commandName, String stepDescription, String status, String errorDescription)
 			throws SelmateExecutionException {
-		document.getRootElement().addContent(
-				createCommandReportElement(stepNo, commandName,
-						stepDescription, status, errorDescription));
+		document.getRootElement()
+				.addContent(createCommandReportElement(stepNo, commandName, stepDescription, status, errorDescription));
 	}
 
 	/**
@@ -174,8 +158,8 @@ public class ReportManager {
 	 * @param imageData
 	 * @throws SelmateExecutionException
 	 */
-	public void log(int stepNo, String commandName, String stepDescription,
-			String status, byte[] imageData) throws SelmateExecutionException {
+	public void log(int stepNo, String commandName, String stepDescription, String status, byte[] imageData)
+			throws SelmateExecutionException {
 
 		log(stepNo, commandName, stepDescription, status, imageData, null);
 	}
@@ -191,11 +175,10 @@ public class ReportManager {
 	 * @param errorDescription
 	 * @throws SelmateExecutionException
 	 */
-	public void log(int stepNo, String commandName, String stepDescription,
-			String status, byte[] imageData, String errorDescription)
-			throws SelmateExecutionException {
-		Element commandReportElement = createCommandReportElement(stepNo,
-				commandName, stepDescription, status, errorDescription);
+	public void log(int stepNo, String commandName, String stepDescription, String status, byte[] imageData,
+			String errorDescription) throws SelmateExecutionException {
+		Element commandReportElement = createCommandReportElement(stepNo, commandName, stepDescription, status,
+				errorDescription);
 		Element imageSrcElement = createImageElement(stepNo, imageData);
 		commandReportElement.addContent(imageSrcElement);
 		document.getRootElement().addContent(commandReportElement);
@@ -209,12 +192,11 @@ public class ReportManager {
 	 * @return
 	 * @throws SelmateExecutionException
 	 */
-	private Element createImageElement(int stepNo, byte[] imageData)
-			throws SelmateExecutionException {
+	private Element createImageElement(int stepNo, byte[] imageData) throws SelmateExecutionException {
 		try {
 			String fileName = "Img" + stepNo + ".png";
-			ImageFileWriter.writeImage(imageData, new FileOutputStream(
-					this.reportDirectoryPath + File.separator + fileName));
+			ImageFileWriter.writeImage(imageData,
+					new FileOutputStream(this.reportDirectoryPath + File.separator + fileName));
 			Element imageSrcElement = new Element("image-src");
 			imageSrcElement.setText(fileName);
 			return imageSrcElement;
@@ -233,8 +215,7 @@ public class ReportManager {
 	 * @param errorDescription
 	 * @return
 	 */
-	private Element createCommandReportElement(int stepNo, String commandName,
-			String stepDescription, String status) {
+	private Element createCommandReportElement(int stepNo, String commandName, String stepDescription, String status) {
 		Element commandReportElement = new Element("command-report");
 		Element stepElement = new Element("step");
 		stepElement.setText(Integer.toString(stepNo));
@@ -262,10 +243,9 @@ public class ReportManager {
 	 * @param errorDescription
 	 * @return
 	 */
-	private Element createCommandReportElement(int stepNo, String commandName,
-			String stepDescription, String status, String errorDescription) {
-		Element commandReportElement = createCommandReportElement(stepNo,
-				commandName, stepDescription, status);
+	private Element createCommandReportElement(int stepNo, String commandName, String stepDescription, String status,
+			String errorDescription) {
+		Element commandReportElement = createCommandReportElement(stepNo, commandName, stepDescription, status);
 		if (errorDescription != null) {
 			Element errorDescElement = new Element("description");
 			errorDescElement.setText(errorDescription);
@@ -285,22 +265,18 @@ public class ReportManager {
 		try {
 			XMLOutputter xmlOutputter = new XMLOutputter();
 			xmlOutputter.setFormat(Format.getPrettyFormat());
-			xmlOutputter.output(document, new FileWriter(
-					this.reportDirectoryPath + "/report.xml"));
+			xmlOutputter.output(document, new FileWriter(this.reportDirectoryPath + "/report.xml"));
 		} catch (IOException e) {
 			throw new SelmateExecutionException(e);
 		}
 	}
 
 	public static ReportManager getInstance() throws SelmateExecutionException {
-		if (instance == null) {
-			synchronized (ReportManager.class) {
-				if (instance == null) {
-					instance = new ReportManager();
-				}
-			}
+
+		if (instance.get() == null) {
+			instance.set(new ReportManager());
 		}
-		return instance;
+		return instance.get();
 	}
 
 }

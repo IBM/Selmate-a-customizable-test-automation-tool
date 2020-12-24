@@ -13,7 +13,7 @@ import com.ibm.selmate.exception.SelmateExecutionException;
  */
 public final class SelmateContextAdapter implements SelmateContext {
 
-	private static SelmateContextAdapter instance = new SelmateContextAdapter();
+	private static ThreadLocal<SelmateContextAdapter> instance = new ThreadLocal<>();
 
 	private SelmateContextImpl context;
 
@@ -92,14 +92,10 @@ public final class SelmateContextAdapter implements SelmateContext {
 	 * @return {@link SelmateContext}
 	 */
 	public static final SelmateContext getCurrentContext() {
-		if (instance == null) {
-			synchronized (SelmateContextAdapter.class) {
-				if (instance == null) {
-					instance = new SelmateContextAdapter();
-				}
-			}
+		if (instance.get() == null) {
+			instance.set(new SelmateContextAdapter());
 		}
-		return instance;
+		return instance.get();
 	}
 
 }

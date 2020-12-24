@@ -18,7 +18,11 @@ import com.ibm.selmate.util.SelmateConstants;
  */
 final class SelmateContextImpl implements SelmateContext {
 
-	private static SelmateContextImpl instance = new SelmateContextImpl();
+	private static ThreadLocal<SelmateContextImpl> instance = new ThreadLocal<SelmateContextImpl>() {
+		protected SelmateContextImpl initialValue() {
+			return new SelmateContextImpl();
+		}
+	};
 
 	private String scriptName;
 
@@ -73,8 +77,8 @@ final class SelmateContextImpl implements SelmateContext {
 	}
 
 	/**
-	 * This operation is responsible for evaluating input values w.r.t. the referred
-	 * variable values.
+	 * This operation is responsible for evaluating input values w.r.t. the
+	 * referred variable values.
 	 */
 	public String evaluateVariables(String content) throws SelmateExecutionException {
 		Matcher matcher = null;
@@ -197,14 +201,7 @@ final class SelmateContextImpl implements SelmateContext {
 	 * @return {@link SelmateContextImpl}
 	 */
 	public static SelmateContextImpl getCurrentContext() {
-		if (instance == null) {
-			synchronized (SelmateContextImpl.class) {
-				if (instance == null) {
-					instance = new SelmateContextImpl();
-				}
-			}
-		}
-		return instance;
+		return instance.get();
 	}
 
 }

@@ -12,20 +12,12 @@ import com.ibm.selmate.builder.SelmateScriptBuilderImpl;
  */
 public class SelmateScriptBuilderFactory {
 
-	private static SelmateScriptBuilderFactory factory = null;
+	private static final SelmateScriptBuilderFactory factory = new SelmateScriptBuilderFactory();
 
 	private SelmateScriptBuilderFactory() {
 	}
 
 	public static SelmateScriptBuilderFactory getInstance() {
-
-		if (factory == null) {
-			synchronized (SelmateScriptBuilderFactory.class) {
-				if (factory == null) {
-					factory = new SelmateScriptBuilderFactory();
-				}
-			}
-		}
 
 		return factory;
 	}
