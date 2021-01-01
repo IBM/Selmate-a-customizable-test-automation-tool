@@ -17,6 +17,7 @@ import com.ibm.selmate.adapter.xls.exception.SelmateXLSAdapterException;
 import com.ibm.selmate.adapter.xls.util.SelmateConstants;
 
 public class ScriptReaderImpl implements ScriptReader {
+
 	static final Logger logger = Logger.getLogger("reportsLogger");
 
 	public List<ScriptCommand> read(InputStream inputStream) throws SelmateXLSAdapterException {

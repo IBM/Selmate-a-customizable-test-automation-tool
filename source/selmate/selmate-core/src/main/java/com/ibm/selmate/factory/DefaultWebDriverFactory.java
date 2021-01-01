@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -30,8 +31,8 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 	}
 
 	/**
-	 * This operation creates an instance of {@link WebDriver} as per the specified
-	 * argument.
+	 * This operation creates an instance of {@link WebDriver} as per the
+	 * specified argument.
 	 */
 	@Override
 	public WebDriver create() throws SelmateExecutionException {
@@ -49,9 +50,12 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 					options.addArguments(option);
 				}
 			}
+			options.setHeadless(isHeadless());
 			driver = new ChromeDriver(options);
 		} else if (DriverDetector.isFirefoxDriver() || DriverDetector.isFirefoxGekoDriver()) {
-			driver = new FirefoxDriver();
+			FirefoxOptions options = new FirefoxOptions();
+			options.setHeadless(isHeadless());
+			driver = new FirefoxDriver(options);
 		} else if (DriverDetector.isIEDriver()) {
 			capabilities = DesiredCapabilities.internetExplorer();
 			capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
@@ -66,6 +70,14 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 		logger.info("END");
 
 		return driver;
+	}
+
+	private boolean isHeadless() {
+		String headless = System.getProperty(SelmateConstants.HEADLESS);
+		if (headless != null && !headless.trim().equals("")) {
+			return Boolean.parseBoolean(headless);
+		}
+		return false;
 	}
 
 	public static WebDriverFactory getInstance() {

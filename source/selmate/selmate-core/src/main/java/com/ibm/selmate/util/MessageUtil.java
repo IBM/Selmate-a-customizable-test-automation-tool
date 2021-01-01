@@ -9,7 +9,7 @@ public class MessageUtil {
 
 	private Map<String, String> messages = new HashMap<String, String>();
 
-	private static MessageUtil instance = new MessageUtil();
+	private static final MessageUtil instance = new MessageUtil();
 
 	private MessageUtil() {
 		ResourceBundle resourceBundle = ResourceBundle.getBundle("application");
@@ -25,7 +25,7 @@ public class MessageUtil {
 		return messages.get(key);
 	}
 
-	public static MessageUtil getInstance() {
+	public static final MessageUtil getInstance() {
 		return instance;
 	}
 

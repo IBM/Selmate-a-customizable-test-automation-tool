@@ -1,4 +1,3 @@
-
 package com.ibm.selmate;
 
 import com.ibm.selmate.exception.SelmateException;

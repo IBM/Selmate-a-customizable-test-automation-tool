@@ -19,7 +19,7 @@ public class SchemaValidator {
 
 	private Validator validator;
 
-	private static SchemaValidator instance;
+	private static ThreadLocal<SchemaValidator> instance = new ThreadLocal<>();
 
 	private SchemaValidator() throws SelmateValidationException {
 		try {
@@ -44,14 +44,10 @@ public class SchemaValidator {
 	}
 
 	public static SchemaValidator getInstance() throws SelmateValidationException {
-		if (instance == null) {
-			synchronized (SchemaValidator.class) {
-				if (instance == null) {
-					instance = new SchemaValidator();
-				}
-			}
+		if (instance.get() == null) {
+			instance.set(new SchemaValidator());
 		}
-		return instance;
+		return instance.get();
 	}
 
 }

@@ -43,7 +43,7 @@ import com.ibm.selmate.util.SelmateConstants;
  */
 final class WebDriverManager {
 
-	private static WebDriverManager webDriverManager;
+	private static ThreadLocal<WebDriverManager> webDriverManager = new ThreadLocal<>();
 
 	private WebDriver waitEnabledDriver;
 
@@ -54,14 +54,10 @@ final class WebDriverManager {
 
 	public static WebDriverManager getInstance() {
 
-		if (webDriverManager == null) {
-			synchronized (WebDriverManager.class) {
-				if (webDriverManager == null) {
-					webDriverManager = new WebDriverManager();
-				}
-			}
+		if (webDriverManager.get() == null) {
+			webDriverManager.set(new WebDriverManager());
 		}
-		return webDriverManager;
+		return webDriverManager.get();
 	}
 
 	/**
@@ -107,13 +103,13 @@ final class WebDriverManager {
 	}
 
 	/**
-	 * This class represents an instance of {@link WebDriver} which works based on
-	 * fluent wait and implements {@link WebDriver}, {@link TakesScreenshot},
+	 * This class represents an instance of {@link WebDriver} which works based
+	 * on fluent wait and implements {@link WebDriver}, {@link TakesScreenshot},
 	 * {@link HasInputDevices} and {@link JavascriptExecutor} interfaces. It
-	 * encapsulates a {@link WebDriver}. The lookup for an {@link WebElement} should
-	 * wait until a predefined time with periodic polling. The default wait time is
-	 * 2 minutes and polling interval is 500 ms. Implementation for all other
-	 * operations are delegated to the encapsulated {@link WebDriver}.
+	 * encapsulates a {@link WebDriver}. The lookup for an {@link WebElement}
+	 * should wait until a predefined time with periodic polling. The default
+	 * wait time is 2 minutes and polling interval is 500 ms. Implementation for
+	 * all other operations are delegated to the encapsulated {@link WebDriver}.
 	 * 
 	 * @author Avijit Basak
 	 * 
@@ -136,8 +132,8 @@ final class WebDriverManager {
 
 		/**
 		 * This operation returns an instance of {@link WebElement} based on the
-		 * argument passed as {@link By}. The operation should wait for the element till
-		 * it is visible with periodic polling.
+		 * argument passed as {@link By}. The operation should wait for the
+		 * element till it is visible with periodic polling.
 		 */
 		@Override
 		public WebElement findElement(final By by) {
@@ -155,9 +151,9 @@ final class WebDriverManager {
 		}
 
 		/**
-		 * This operation returns a {@link List} of {@link WebElement} based on the
-		 * argument passed as {@link By}. The operation should wait for the elements to
-		 * be visible with periodic polling.
+		 * This operation returns a {@link List} of {@link WebElement} based on
+		 * the argument passed as {@link By}. The operation should wait for the
+		 * elements to be visible with periodic polling.
 		 */
 		@Override
 		public List<WebElement> findElements(final By by) {

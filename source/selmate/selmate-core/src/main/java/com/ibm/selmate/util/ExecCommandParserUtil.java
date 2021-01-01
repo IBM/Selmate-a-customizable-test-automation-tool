@@ -25,6 +25,39 @@ public class ExecCommandParserUtil {
 		throw new SelmateException("File Not Found");
 	}
 
+	public static boolean isBulkExecution(String[] args) {
+		for (int i = 0; i < args.length; i++) {
+			if (args[i].equals("--bulk")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static List<File> getScriptFiles(String[] args) throws SelmateException {
+		List<File> files = new ArrayList<>();
+		for (int i = 0; i < args.length; i++) {
+			if (args[i].equals("--dir")) {
+				if (args.length >= i + 1) {
+					String dirPath = args[i + 1];
+					File inputDir = new File(dirPath);
+					if (inputDir.exists()) {
+						File[] fileList = inputDir.listFiles();
+						if (fileList.length == 0) {
+							throw new SelmateException("No file exist in the directory.");
+						}
+						for (File file : fileList) {
+							files.add(file);
+						}
+					} else {
+						throw new SelmateException("Invalid Directory name.");
+					}
+				}
+			}
+		}
+		return files;
+	}
+
 	public static List<String> getOptions(String[] args) {
 		List<String> options = new ArrayList<String>();
 		boolean isOptionFound = false;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CommandValidationErrorHandler {
 
-	private static CommandValidationErrorHandler instance = new CommandValidationErrorHandler();
+	private static ThreadLocal<CommandValidationErrorHandler> instance = new ThreadLocal<>();
 
 	private List<String> messages = new ArrayList<String>();
 
@@ -33,14 +33,11 @@ public class CommandValidationErrorHandler {
 	}
 
 	public static CommandValidationErrorHandler getInstance() {
-		if (instance == null) {
-			synchronized (CommandValidationErrorHandler.class) {
-				if (instance == null) {
-					instance = new CommandValidationErrorHandler();
-				}
-			}
+
+		if (instance.get() == null) {
+			instance.set(new CommandValidationErrorHandler());
 		}
-		return instance;
+		return instance.get();
 	}
 
 }
