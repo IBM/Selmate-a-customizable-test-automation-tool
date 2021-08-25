@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -123,17 +123,17 @@ public class ScriptReaderImpl implements ScriptReader {
 
 	public String getCellStringValue(Cell cell) {
 
-		if (cell.getCellType() == XSSFCell.CELL_TYPE_BLANK) {
+		if (cell.getCellType() == CellType.BLANK) {
 			return "";
-		} else if (cell.getCellType() == XSSFCell.CELL_TYPE_BOOLEAN) {
+		} else if (cell.getCellType() == CellType.BOOLEAN) {
 			return String.valueOf(cell.getBooleanCellValue());
-		} else if (cell.getCellType() == XSSFCell.CELL_TYPE_ERROR) {
+		} else if (cell.getCellType() == CellType.ERROR) {
 			return String.valueOf(cell.getErrorCellValue());
-		} else if (cell.getCellType() == XSSFCell.CELL_TYPE_FORMULA) {
+		} else if (cell.getCellType() == CellType.FORMULA) {
 			return String.valueOf(cell.getCellFormula());
-		} else if (cell.getCellType() == XSSFCell.CELL_TYPE_NUMERIC) {
+		} else if (cell.getCellType() == CellType.NUMERIC) {
 			return String.valueOf(cell.getNumericCellValue());
-		} else if (cell.getCellType() == XSSFCell.CELL_TYPE_STRING) {
+		} else if (cell.getCellType() == CellType.STRING) {
 			return cell.getStringCellValue();
 		}
 		return null;
