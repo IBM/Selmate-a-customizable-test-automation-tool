@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.SelmateContext;
@@ -14,7 +15,7 @@ public class SwitchToFrameCommand extends AbstractCommand {
 
 	private int index = -1;
 
-	private Logger logger = Logger.getLogger(SwitchToFrameCommand.class);
+	private Logger logger = LogManager.getLogger(SwitchToFrameCommand.class);
 
 	public void setId(String id) {
 		this.id = id;

@@ -1,11 +1,12 @@
 
 package com.ibm.selmate.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.apache.commons.validator.routines.UrlValidator;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.SelmateContext;
@@ -18,7 +19,7 @@ public class OpenCommand extends AbstractCommand {
 
 	private String url;
 
-	private Logger logger = Logger.getLogger(OpenCommand.class);
+	private Logger logger = LogManager.getLogger(OpenCommand.class);
 
 	public void setUrl(String url) {
 		this.url = url;

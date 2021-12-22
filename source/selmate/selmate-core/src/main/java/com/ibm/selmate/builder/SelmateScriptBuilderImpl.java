@@ -1,14 +1,14 @@
 
 package com.ibm.selmate.builder;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
-
-import org.apache.log4j.Logger;
 
 import com.ibm.selmate.SelmateScriptImpl;
 import com.ibm.selmate.command.AbstractCommand;
@@ -27,7 +27,7 @@ import com.ibm.selmate.jaxb.stubs.Script;
  */
 public class SelmateScriptBuilderImpl implements SelmateScriptBuilder {
 
-	private Logger logger = Logger.getLogger(SelmateScriptBuilderImpl.class);
+	private Logger logger = LogManager.getLogger(SelmateScriptBuilderImpl.class);
 
 	public SelmateScript build(String xmlScript) throws SelmateExecutionException {
 

@@ -1,11 +1,12 @@
 
 package com.ibm.selmate.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.SelmateContext;
@@ -19,7 +20,7 @@ public class AuthenticateAlertCommand extends AbstractAlertCommand {
 
 	private String password;
 
-	private Logger logger = Logger.getLogger(AuthenticateAlertCommand.class);
+	private Logger logger = LogManager.getLogger(AuthenticateAlertCommand.class);
 
 	public void setUserName(String userName) {
 		this.userName = userName;

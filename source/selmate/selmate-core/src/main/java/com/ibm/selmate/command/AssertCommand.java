@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.SelmateContext;
@@ -24,7 +25,7 @@ public class AssertCommand extends AbstractCommand {
 
 	private String failureMsg;
 
-	private Logger logger = Logger.getLogger(AssertCommand.class);
+	private Logger logger = LogManager.getLogger(AssertCommand.class);
 
 	public static enum Type {
 		ERROR, WARN

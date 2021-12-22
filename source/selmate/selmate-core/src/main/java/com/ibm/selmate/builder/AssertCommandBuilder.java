@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ibm.selmate.command.AssertCommand;
 import com.ibm.selmate.command.Command;
@@ -10,7 +11,7 @@ import com.ibm.selmate.jaxb.stubs.AssertCommandType;
 
 public class AssertCommandBuilder extends AbstractSelmateCommandBuilder {
 
-	private Logger logger = Logger.getLogger(AssertCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(AssertCommandBuilder.class);
 
 	@Override
 	public Command build(AbstractCommandType abstractCommandType) {

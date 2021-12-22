@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ public abstract class AbstractElementInteractionCommand extends AbstractCommand 
 
 	private Element element;
 
-	private Logger logger = Logger.getLogger(AbstractElementInteractionCommand.class);
+	private Logger logger = LogManager.getLogger(AbstractElementInteractionCommand.class);
 
 	public Element getElement() {
 		return element;

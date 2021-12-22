@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.command.AbstractWaitCommand;
 import com.ibm.selmate.command.Command;
 import com.ibm.selmate.command.DelayCommand;
@@ -16,7 +16,7 @@ import com.ibm.selmate.jaxb.stubs.WaitCommandType.Duration;
 
 public class WaitCommandBuilder extends AbstractSelmateCommandBuilder {
 
-	private Logger logger = Logger.getLogger(WaitCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(WaitCommandBuilder.class);
 
 	@Override
 	public Command build(AbstractCommandType abstractCommandType) throws SelmateException {

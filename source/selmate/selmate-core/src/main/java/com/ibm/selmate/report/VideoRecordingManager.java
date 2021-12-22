@@ -1,8 +1,9 @@
 package com.ibm.selmate.report;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.io.File;
 
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterTest;
 
 import com.ibm.selmate.util.ReportUtil;
@@ -17,7 +18,7 @@ public class VideoRecordingManager {
 
 	private ATUTestRecorder recorder;
 
-	private Logger logger = Logger.getLogger(VideoRecordingManager.class);
+	private Logger logger = LogManager.getLogger(VideoRecordingManager.class);
 
 	private VideoRecordingManager() {
 

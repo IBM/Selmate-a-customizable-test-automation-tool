@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.SelmateContext;
 import com.ibm.selmate.exception.SelmateExecutionException;
 import com.ibm.selmate.report.ReportManager;
@@ -11,7 +11,7 @@ import com.ibm.selmate.util.SelmateConstants;
 
 public abstract class AbstractCommand implements Command {
 
-	private Logger logger = Logger.getLogger(AbstractCommand.class);
+	private Logger logger = LogManager.getLogger(AbstractCommand.class);
 
 	private String stepDescription;
 

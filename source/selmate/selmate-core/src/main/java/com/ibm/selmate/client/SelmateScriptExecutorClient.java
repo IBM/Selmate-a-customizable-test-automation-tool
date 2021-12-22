@@ -4,12 +4,12 @@ package com.ibm.selmate.client;
 import java.io.File;
 import java.io.FileInputStream;
 
-import org.apache.log4j.Logger;
-
 import com.ibm.selmate.SelmateScriptExecutor;
 import com.ibm.selmate.SelmateScriptExecutorFactory;
 import com.ibm.selmate.exception.SelmateException;
 import com.ibm.selmate.util.ExecCommandParserUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This class is responsible to read xml file and execute the same as script.
@@ -19,7 +19,7 @@ import com.ibm.selmate.util.ExecCommandParserUtil;
  */
 public class SelmateScriptExecutorClient {
 
-	private static Logger logger = Logger.getLogger(SelmateScriptExecutorClient.class);
+	private static Logger logger = LogManager.getLogger(SelmateScriptExecutorClient.class);
 
 	public static void main(String[] args) {
 

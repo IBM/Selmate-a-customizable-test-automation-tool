@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -13,7 +14,7 @@ public class ReadValueCommand extends AbstractReadCommand {
 
 	private String attributeName;
 
-	private Logger logger = Logger.getLogger(ReadValueCommand.class);
+	private Logger logger = LogManager.getLogger(ReadValueCommand.class);
 
 	public void setAttributeName(String attributeName) {
 		this.attributeName = attributeName;

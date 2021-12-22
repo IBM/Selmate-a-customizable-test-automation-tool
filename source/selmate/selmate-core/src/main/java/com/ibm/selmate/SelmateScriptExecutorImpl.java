@@ -3,7 +3,8 @@ package com.ibm.selmate;
 import java.io.InputStream;
 import java.io.Reader;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.builder.SelmateScriptBuilder;
@@ -24,7 +25,7 @@ import com.ibm.selmate.validator.SchemaValidator;
  */
 final class SelmateScriptExecutorImpl implements SelmateScriptExecutor {
 
-	static final Logger logger = Logger.getLogger(SelmateScriptExecutorImpl.class);
+	static final Logger logger = LogManager.getLogger(SelmateScriptExecutorImpl.class);
 
 	@Override
 	public void execute(Reader scriptReader) throws SelmateExecutionException {
@@ -40,7 +41,8 @@ final class SelmateScriptExecutorImpl implements SelmateScriptExecutor {
 		try {
 			logger.info("Input XML script:");
 			logger.info(script);
-			System.out.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Validating script");
+			System.out
+					.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Validating script");
 			SchemaValidator.getInstance().validate(script);
 			SelmateScript selmateScript = buildScript(script);
 			execute(selmateScript);
@@ -60,8 +62,8 @@ final class SelmateScriptExecutorImpl implements SelmateScriptExecutor {
 	}
 
 	/**
-	 * This operation accepts an instance of {@link SelmateScript}, validates
-	 * the same and execute it.
+	 * This operation accepts an instance of {@link SelmateScript}, validates the
+	 * same and execute it.
 	 * 
 	 * @param selmateScript
 	 * @throws SelmateExecutionException
@@ -70,15 +72,19 @@ final class SelmateScriptExecutorImpl implements SelmateScriptExecutor {
 	private void execute(SelmateScript selmateScript) throws SelmateExecutionException, SelmateValidationException {
 		try {
 			logger.info("Start of execute method inside  SelmateScriptExecutorImpl");
-			System.out.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Validating script.");
+			System.out.println(
+					"[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Validating script.");
 			selmateScript.validate();
-			System.out.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Validation Complete.");
-			System.out.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Executing Script.");
+			System.out.println(
+					"[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Validation Complete.");
+			System.out
+					.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Executing Script.");
 			WebDriverManager webDriverManager = WebDriverManager.getInstance();
 			WebDriver driver = webDriverManager.create();
 			selmateScript.execute(driver);
 			webDriverManager.close();
-			System.out.println("[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Script Execution Finished.");
+			System.out.println(
+					"[" + SelmateContextImpl.getCurrentContext().getScriptName() + "] " + "Script Execution Finished.");
 			logger.info("End of execute method inside  SelmateScriptExecutorImpl");
 		} catch (Exception ex) {
 			throw new SelmateExecutionException(ex);

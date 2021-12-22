@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -18,7 +19,7 @@ import com.ibm.selmate.adapter.xls.util.SelmateConstants;
 
 public class ScriptReaderImpl implements ScriptReader {
 
-	static final Logger logger = Logger.getLogger("reportsLogger");
+	static final Logger logger = LogManager.getLogger("reportsLogger");
 
 	public List<ScriptCommand> read(InputStream inputStream) throws SelmateXLSAdapterException {
 

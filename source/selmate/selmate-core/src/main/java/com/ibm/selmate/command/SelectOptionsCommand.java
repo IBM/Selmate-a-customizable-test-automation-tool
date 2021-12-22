@@ -1,10 +1,11 @@
 
 package com.ibm.selmate.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -19,7 +20,7 @@ public class SelectOptionsCommand extends SelectCommand {
 
 	List<Option> options = new ArrayList<Option>();
 
-	private Logger logger = Logger.getLogger(SelectOptionsCommand.class);
+	private Logger logger = LogManager.getLogger(SelectOptionsCommand.class);
 
 	public void setOptionList(List<Option> optionList) {
 		this.options = optionList;

@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.factory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,15 +25,15 @@ public class DefaultWebDriverFactory implements WebDriverFactory {
 
 	private static final WebDriverFactory instance = new DefaultWebDriverFactory();
 
-	private Logger logger = Logger.getLogger(DefaultWebDriverFactory.class);
+	private Logger logger = LogManager.getLogger(DefaultWebDriverFactory.class);
 
 	private DefaultWebDriverFactory() {
 
 	}
 
 	/**
-	 * This operation creates an instance of {@link WebDriver} as per the
-	 * specified argument.
+	 * This operation creates an instance of {@link WebDriver} as per the specified
+	 * argument.
 	 */
 	@Override
 	public WebDriver create() throws SelmateExecutionException {

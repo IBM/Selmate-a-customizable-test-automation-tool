@@ -9,7 +9,8 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ibm.selmate.adapter.xls.exception.SelmateXLSAdapterException;
 import com.ibm.selmate.adapter.xls.util.SelmateConstants;
@@ -55,7 +56,7 @@ import com.ibm.selmate.jaxb.stubs.WritePasswordCommandType;
 import com.ibm.selmate.jaxb.stubs.WriteTextCommandType;
 
 public class SelmateScriptGeneratorImpl implements SelmateScriptGenerator {
-	static final Logger logger = Logger.getLogger("reportsLogger");
+	static final Logger logger = LogManager.getLogger("reportsLogger");
 
 	public String generate(List<ScriptCommand> scriptCommands) throws SelmateXLSAdapterException {
 

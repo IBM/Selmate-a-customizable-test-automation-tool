@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.command.AcceptAlertCommand;
 import com.ibm.selmate.command.AuthenticateAlertCommand;
 import com.ibm.selmate.command.Command;
@@ -16,7 +16,7 @@ import com.ibm.selmate.jaxb.stubs.DismissAlertCommandType;
 
 public class AlertCommandBuilder extends AbstractSelmateCommandBuilder {
 
-	private Logger logger = Logger.getLogger(AlertCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(AlertCommandBuilder.class);
 
 	@Override
 	public Command build(AbstractCommandType abstractCommandType) throws SelmateException {

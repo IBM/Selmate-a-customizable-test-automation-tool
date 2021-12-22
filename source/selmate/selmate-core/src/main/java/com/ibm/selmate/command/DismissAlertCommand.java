@@ -1,11 +1,12 @@
 
 package com.ibm.selmate.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 
@@ -15,7 +16,7 @@ import com.ibm.selmate.util.CommandTypes;
 
 public class DismissAlertCommand extends AbstractAlertCommand {
 
-	private Logger logger = Logger.getLogger(DismissAlertCommand.class);
+	private Logger logger = LogManager.getLogger(DismissAlertCommand.class);
 
 	public Boolean execute(WebDriver driver, SelmateContext selmateContext) throws SelmateExecutionException {
 		try {

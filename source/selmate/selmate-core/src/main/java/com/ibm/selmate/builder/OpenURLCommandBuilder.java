@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.command.Command;
 import com.ibm.selmate.command.OpenCommand;
 import com.ibm.selmate.exception.SelmateException;
@@ -11,7 +11,7 @@ import com.ibm.selmate.jaxb.stubs.OpenURLCommandType;
 
 public class OpenURLCommandBuilder extends AbstractSelmateCommandBuilder {
 
-	private Logger logger = Logger.getLogger(OpenURLCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(OpenURLCommandBuilder.class);
 
 	@Override
 	public Command build(AbstractCommandType abstractCommandType) throws SelmateException {

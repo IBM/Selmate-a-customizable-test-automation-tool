@@ -15,21 +15,21 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ibm.selmate.SelmateScriptExecutor;
 import com.ibm.selmate.SelmateScriptExecutorFactory;
 import com.ibm.selmate.adapter.xls.exception.SelmateXLSAdapterException;
 import com.ibm.selmate.exception.SelmateException;
 import com.ibm.selmate.exception.SelmateExecutionException;
-import com.ibm.selmate.exception.SelmateValidationException;
 import com.ibm.selmate.util.ExecCommandParserUtil;
 
 public class XLSScriptExecutor implements Callable<Boolean> {
 
 	private File inputFile;
 
-	static final Logger logger = Logger.getLogger(XLSScriptExecutor.class);
+	static final Logger logger = LogManager.getLogger(XLSScriptExecutor.class);
 
 	public static void main(String[] args) {
 

@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.ibm.selmate.command.Element;
 import com.ibm.selmate.command.Locator;
@@ -13,7 +14,7 @@ import com.ibm.selmate.jaxb.stubs.SelectionStatusType;
 
 public abstract class AbstractElementInteractionCommandBuilder extends AbstractSelmateCommandBuilder {
 
-	private Logger logger = Logger.getLogger(AbstractElementInteractionCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(AbstractElementInteractionCommandBuilder.class);
 
 	protected Element buildElement(AbstractElementInteractionCommandType elementInteractionCommandType) {
 		logger.info("START");

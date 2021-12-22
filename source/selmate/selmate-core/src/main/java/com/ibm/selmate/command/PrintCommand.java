@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.SelmateContext;
@@ -14,7 +15,7 @@ public class PrintCommand extends AbstractCommand {
 
 	private String value;
 
-	private Logger logger = Logger.getLogger(PrintCommand.class);
+	private Logger logger = LogManager.getLogger(PrintCommand.class);
 
 	public void setValue(String value) {
 		this.value = value;

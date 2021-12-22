@@ -1,7 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -15,7 +16,7 @@ public class WritePasswordCommand extends AbstractInputCommand {
 
 	private String content;
 
-	private Logger logger = Logger.getLogger(WriteCommand.class);
+	private Logger logger = LogManager.getLogger(WriteCommand.class);
 
 	public void setContent(String content) {
 		this.content = content;

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.ImeActivationFailedException;
 import org.openqa.selenium.ImeNotAvailableException;
@@ -38,7 +39,7 @@ import com.ibm.selmate.util.MessageUtil;
 
 public final class SelmateScriptImpl implements SelmateScript {
 
-	static final Logger logger = Logger.getLogger(SelmateScriptImpl.class);
+	static final Logger logger = LogManager.getLogger(SelmateScriptImpl.class);
 
 	private String name;
 

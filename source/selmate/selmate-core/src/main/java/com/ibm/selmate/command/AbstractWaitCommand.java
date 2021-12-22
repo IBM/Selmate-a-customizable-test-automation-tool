@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.SelmateContext;
 import com.ibm.selmate.util.CommandValidationErrorHandler;
 
@@ -12,7 +12,7 @@ public abstract class AbstractWaitCommand extends AbstractCommand {
 
 	private Unit unit;
 
-	private Logger logger = Logger.getLogger(AbstractWaitCommand.class);
+	private Logger logger = LogManager.getLogger(AbstractWaitCommand.class);
 
 	public static enum Unit {
 

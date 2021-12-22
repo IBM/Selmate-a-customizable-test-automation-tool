@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.HasCapabilities;
@@ -47,7 +48,7 @@ final class WebDriverManager {
 
 	private WebDriver waitEnabledDriver;
 
-	private Logger logger = Logger.getLogger(WebDriverManager.class);
+	private Logger logger = LogManager.getLogger(WebDriverManager.class);
 
 	private WebDriverManager() {
 	}

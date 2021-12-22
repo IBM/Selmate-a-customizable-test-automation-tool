@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.command;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.SelmateContext;
 import com.ibm.selmate.util.CommandValidationErrorHandler;
 
@@ -10,7 +10,7 @@ public abstract class AbstractReadCommand extends AbstractElementInteractionComm
 
 	private String variableName;
 
-	Logger logger = Logger.getLogger(AbstractReadCommand.class);
+	Logger logger = LogManager.getLogger(AbstractReadCommand.class);
 
 	@Override
 	public void validate(CommandValidationErrorHandler errorHandler, SelmateContext selmateContext) {

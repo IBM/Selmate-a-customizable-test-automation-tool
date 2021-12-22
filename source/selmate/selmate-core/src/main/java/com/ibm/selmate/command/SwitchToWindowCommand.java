@@ -1,9 +1,10 @@
 
 package com.ibm.selmate.command;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
 import com.ibm.selmate.SelmateContext;
@@ -12,7 +13,7 @@ import com.ibm.selmate.util.CommandTypes;
 
 public class SwitchToWindowCommand extends AbstractCommand {
 
-	private Logger logger = Logger.getLogger(this.getClass());
+	private Logger logger = LogManager.getLogger(this.getClass());
 
 	/**
 	 * This operation is used to switch the control from parent to child window or

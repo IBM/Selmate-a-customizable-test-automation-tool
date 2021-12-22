@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.command.Command;
 import com.ibm.selmate.command.Element;
 import com.ibm.selmate.command.ReadValueCommand;
@@ -12,7 +12,7 @@ import com.ibm.selmate.jaxb.stubs.ReadValueCommandType;
 
 public class ReadValueCommandBuilder extends AbstractElementInteractionCommandBuilder {
 
-	private Logger logger = Logger.getLogger(ReadValueCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(ReadValueCommandBuilder.class);
 
 	@Override
 	public Command build(AbstractCommandType abstractCommandType) throws SelmateException {

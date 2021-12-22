@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.builder;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.command.Command;
 import com.ibm.selmate.command.SelectCommand;
 import com.ibm.selmate.command.SelectOptionsCommand;
@@ -14,7 +14,7 @@ import com.ibm.selmate.jaxb.stubs.SelectOptionsCommandType.Options.Option;
 
 public class SelectCommandBuilder extends AbstractElementInteractionCommandBuilder {
 
-	private Logger logger = Logger.getLogger(SelectCommandBuilder.class);
+	private Logger logger = LogManager.getLogger(SelectCommandBuilder.class);
 
 	@Override
 	public Command build(AbstractCommandType commandType) throws SelmateException {

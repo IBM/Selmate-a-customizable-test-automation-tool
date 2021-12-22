@@ -1,8 +1,8 @@
 
 package com.ibm.selmate.factory;
 
-import org.apache.log4j.Logger;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.ibm.selmate.builder.ActivateCommandBuilder;
 import com.ibm.selmate.builder.AlertCommandBuilder;
 import com.ibm.selmate.builder.AssertCommandBuilder;
@@ -65,7 +65,7 @@ public class SelmateCommandBuilderFactory {
 
 	private static final SelmateCommandBuilderFactory instance = new SelmateCommandBuilderFactory();
 
-	private Logger logger = Logger.getLogger(SelmateCommandBuilderFactory.class);
+	private Logger logger = LogManager.getLogger(SelmateCommandBuilderFactory.class);
 
 	private SelmateCommandBuilderFactory() {
 
