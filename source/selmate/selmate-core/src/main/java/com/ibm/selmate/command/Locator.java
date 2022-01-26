@@ -1,6 +1,9 @@
 
 package com.ibm.selmate.command;
 
+/**
+ * Locator of elements.
+ */
 public class Locator {
 
 	public static final String SEPARATOR = ";";
