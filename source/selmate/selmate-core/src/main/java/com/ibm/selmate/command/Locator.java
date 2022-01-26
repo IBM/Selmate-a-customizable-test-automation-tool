@@ -3,7 +3,10 @@ package com.ibm.selmate.command;
 
 public class Locator {
 
+	public static final String SEPARATOR = ";";
+
 	private Type type;
+
 	private String value;
 
 	public enum Type {

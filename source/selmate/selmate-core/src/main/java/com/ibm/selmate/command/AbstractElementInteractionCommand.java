@@ -37,21 +37,57 @@ public abstract class AbstractElementInteractionCommand extends AbstractCommand 
 		WebElement webElement = null;
 		String locatorValue = element.getLocator().getValue();
 		Locator.Type locatorType = element.getLocator().getType();
+		String[] locators = locatorValue.split(Locator.SEPARATOR);
 
 		if (locatorType == Locator.Type.ID) {
 			webElement = driver.findElement(By.id(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.id(locators[i]));
+				}
+			}
 		} else if (locatorType == Locator.Type.XPATH) {
 			webElement = driver.findElement(By.xpath(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.xpath(locators[i]));
+				}
+			}
 		} else if (locatorType == Locator.Type.CLASS_NAME) {
 			webElement = driver.findElement(By.className(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.className(locators[i]));
+				}
+			}
 		} else if (locatorType == Locator.Type.TAG_NAME) {
 			webElement = driver.findElement(By.tagName(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.tagName(locators[i]));
+				}
+			}
 		} else if (locatorType == Locator.Type.CSS_SELECTOR) {
 			webElement = driver.findElement(By.cssSelector(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.cssSelector(locators[i]));
+				}
+			}
 		} else if (locatorType == Locator.Type.LINKTEXT) {
 			webElement = driver.findElement(By.linkText(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.linkText(locators[i]));
+				}
+			}
 		} else if (locatorType == Locator.Type.PARTIAL_LINKTEXT) {
 			webElement = driver.findElement(By.partialLinkText(locatorValue));
+			if (locators.length > 1) {
+				for (int i = 1; i < locators.length; i++) {
+					webElement = webElement.findElement(By.partialLinkText(locators[i]));
+				}
+			}
 		}
 		logger.info("END");
 
